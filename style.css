@@ -1,0 +1,27 @@
+#color-palette div{
+  display: inline-block;
+  padding-right: 1px;
+}
+
+#vermelho {
+  background-color: red;
+}
+
+#verde {
+  background-color:green;
+}
+
+#azul {
+  background-color: blue;
+}
+
+#amarelo {
+  background-color: yellow;
+}
+
+.color {
+  width: 70px;
+  height: 70px;
+  margin: 50px;
+  border: 1px solid;
+}
