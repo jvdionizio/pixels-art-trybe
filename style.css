@@ -1,6 +1,9 @@
 #color-palette div{
   display: inline-block;
-  padding-right: 1px;
+}
+
+#preto{
+  background-color: black;
 }
 
 #vermelho {
