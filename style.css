@@ -22,9 +22,15 @@
   background-color: yellow;
 }
 
+.pixel{
+  width:60px;
+  height:60px;
+  border: 3px;
+}
+
 .color {
   width: 70px;
   height: 70px;
-  margin: 50px;
-  border: 1px solid;
+  margin: 5px;
+  border: 1px;
 }
