@@ -22,10 +22,6 @@
   background-color: yellow;
 }
 
-.pixel-board {
-  margin : 0 auto;
-}
-
 .pixel{
   display: inline-block;
   width:40px;
