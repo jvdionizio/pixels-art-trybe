@@ -1,31 +1,27 @@
-let pixelBoard = document.getElementById('pixel-board');
+// eslint-disable-next-line max-lines-per-function
+window.onload = function () {
+  const lines = document.querySelectorAll('.pixel-line');
 
-pixelBoard.style.backgroundColor = '#FFF34F';
+  // eslint-disable-next-line no-use-before-define
+  fillBlock(lines);
 
-function createLine() {
-  let line = document.createElement('div');
-  line.className = 'line';
-  return line;
-}
-
-function createPixel() {
-  let pixel = document.createElement('div');
-  pixel.className = 'pixel';
-  return pixel;
-}
-
-function fillBlock(altura) {
-  for (let i = 0; i < altura; i += 1) {
-    let line = createLine();
-    pixelBoard.appendChild(line);
+  function createPixel(className) {
+    const pixel = document.createElement('div');
+    pixel.className = className;
+    return pixel;
   }
-}
 
-function fillLine(largura) {
-  for (let i = 1; i <= largura; i += 1) {
-    let pixel = createPixel();
-    line.appendChild(pixel);
+  // eslint-disable-next-line no-shadow
+  function fillBlock(lines) {
+    for (let index = 0; index < lines.length; index += 1) {
+      // eslint-disable-next-line no-use-before-define
+      fillLine(lines[index]);
+    }
   }
-}
 
-fillBlock(5);
+  function fillLine(largura) {
+    for (let i = 0; i < lines.length; i += 1) {
+      largura.appendChild(createPixel('pixel'));
+    }
+  }
+};

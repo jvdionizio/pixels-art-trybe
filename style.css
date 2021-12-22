@@ -22,15 +22,21 @@
   background-color: yellow;
 }
 
+.pixel-board {
+  margin : 0 auto;
+}
+
 .pixel{
-  width:60px;
-  height:60px;
-  border: 3px;
+  display: inline-block;
+  width:40px;
+  height:40px;
+  border: solid 1px;
+  background-color:white;
 }
 
 .color {
   width: 70px;
   height: 70px;
   margin: 5px;
-  border: 1px;
+  border: solid 1px;
 }
