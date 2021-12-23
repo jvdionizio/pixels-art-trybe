@@ -18,6 +18,20 @@
   background-color: blue;
 }
 
+#newSizeSelector {
+  margin-bottom: 10px;
+}
+
+#size{
+  margin-left: 75px;
+  display: inline;
+}
+
+.btn-size div{
+  display: inline-block;
+  width:60px
+}
+
 .pixel{
   display: inline-block;
   width:40px;

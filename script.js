@@ -1,15 +1,29 @@
+/* eslint-disable no-template-curly-in-string */
+/* eslint-disable max-lines-per-function */
 /* eslint-disable prefer-const */
 // Parâmetro criado para que o javascript só execute após a página estar carregada
 // eslint-disable-next-line max-lines-per-function
-window.onload = function () {
+window.onload = function pgCarregada() {
   const preto = document.getElementById('preto');
-  const vermelho = document.getElementById('vermelho');
-  const verde = document.getElementById('verde');
-  const azul = document.getElementById('azul');
+  const corUm = document.getElementById('corUm');
+  const corDois = document.getElementById('corDois');
+  const corTres = document.getElementById('corTres');
+
+  function generateColor() {
+    let color = [];
+    for (let i = 0; i < 3; i += 1) {
+      color.push(Math.round(Math.random() * 256));
+    }
+    return `rgb(${color[0]},${color[1]}, ${color[2]} )`;
+  }
+
+  corUm.style.backgroundColor = generateColor();
+  corDois.style.backgroundColor = generateColor();
+  corTres.style.backgroundColor = generateColor();
 
   const board = document.getElementById('pixel-board');
   // h de height
-  const h = 5;
+  let h = 5;
 
   // função para criar divs e dar classe a elas
   function createDiv(className) {
@@ -26,7 +40,7 @@ window.onload = function () {
 
   creatLines(board);
 
-  const lines = document.querySelectorAll('.pixel-line');
+  let lines = document.querySelectorAll('.pixel-line');
 
   // eslint-disable-next-line no-use-before-define
   fillBlock(lines);
@@ -42,7 +56,7 @@ window.onload = function () {
   }
   // função para criar pixels e coloca-los em suas div's com classe pixel-line
   function fillLine(largura) {
-    for (let i = 0; i < lines.length; i += 1) {
+    for (let i = 0; i < h; i += 1) {
       largura.appendChild(createDiv('pixel'));
     }
   }
@@ -57,9 +71,9 @@ window.onload = function () {
   }
 
   preto.addEventListener('click', select);
-  vermelho.addEventListener('click', select);
-  verde.addEventListener('click', select);
-  azul.addEventListener('click', select);
+  corUm.addEventListener('click', select);
+  corDois.addEventListener('click', select);
+  corTres.addEventListener('click', select);
 
   function painting() {
     const pixelList = document.getElementsByClassName('pixel');
@@ -80,6 +94,7 @@ window.onload = function () {
 
   painting();
 
+  // função que limpa o quadro pintando todos os pixels de branco
   function clearBoard() {
     const pixelList = document.getElementsByClassName('pixel');
     for (let i = 0; i < pixelList.length; i += 1) {
@@ -89,4 +104,53 @@ window.onload = function () {
 
   const clearButton = document.getElementById('clear-board');
   clearButton.addEventListener('click', clearBoard);
+
+  const generateBoard = document.getElementById('generate-board');
+
+  // Função que da um novo tamanho ao board para isso pega o valor declarado pelo usário no imput e atribui a variável 'h' que é responsável pelo número de linhas e de pixels
+  // eslint-disable-next-line complexity
+  function newSize() {
+    const boardSize = document.getElementById('board-size').value;
+    const boardSizeInt = parseInt(boardSize, 10);
+    // Para poder adicionar novos filhos a div 'pixel-board' novamente removi todos os filhos antes, para que não haja uma "soma" de filhos
+    function removeChild(parent) {
+      while (parent.firstChild) {
+        parent.removeChild(parent.firstChild);
+      }
+    }
+    clearBoard();
+    function reSize(size) {
+      h = size;
+      creatLines(board);
+      // eslint-disable-next-line no-shadow
+      let lines = document.querySelectorAll('.pixel-line');
+      fillBlock(lines);
+      // eslint-disable-next-line no-use-before-define
+      viewSize();
+      painting();
+    }
+    if (boardSize == undefined) {
+      alert('Board inválido!');
+    }
+    removeChild(board);
+    // eslint-disable-next-line no-param-reassign
+    if (boardSizeInt >= 5 && boardSizeInt <= 50) {
+      reSize(boardSizeInt);
+    } else if (boardSizeInt < 5) {
+      reSize(5);
+    } else if (boardSizeInt > 50) {
+      reSize(50);
+    } else {
+      alert('Board inválido!');
+    }
+  }
+
+  generateBoard.addEventListener('click', newSize);
+
+  function viewSize() {
+    // eslint-disable-next-line no-shadow
+    let size = document.getElementById('size');
+    size.innerText = `Tamanho: ${h}`;
+  }
+  viewSize();
 };
