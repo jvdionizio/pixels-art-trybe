@@ -18,16 +18,11 @@
   background-color: blue;
 }
 
-#amarelo {
-  background-color: yellow;
-}
-
 .pixel{
   display: inline-block;
   width:40px;
   height:40px;
   border: solid 1px;
-  background-color:white;
 }
 
 .color {

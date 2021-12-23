@@ -1,3 +1,4 @@
+/* eslint-disable prefer-const */
 // Parâmetro criado para que o javascript só execute após a página estar carregada
 // eslint-disable-next-line max-lines-per-function
 window.onload = function () {
@@ -5,6 +6,7 @@ window.onload = function () {
   const vermelho = document.getElementById('vermelho');
   const verde = document.getElementById('verde');
   const azul = document.getElementById('azul');
+
   const board = document.getElementById('pixel-board');
   // h de height
   const h = 5;
@@ -46,4 +48,45 @@ window.onload = function () {
   }
 
   preto.classList.add('selected');
+
+  // Esta função qual elemento tem a classe 'selected' remove a classe dele e em seguida atribui a ao elemento com o qual o usário interagil
+  function select(sourceEvent) {
+    const selected = document.querySelector('.selected');
+    selected.classList.remove('selected');
+    sourceEvent.target.classList.add('selected');
+  }
+
+  preto.addEventListener('click', select);
+  vermelho.addEventListener('click', select);
+  verde.addEventListener('click', select);
+  azul.addEventListener('click', select);
+
+  function painting() {
+    const pixelList = document.getElementsByClassName('pixel');
+
+    function paint(sourceEvent) {
+      const selected = document.querySelector('.selected');
+      const selectedCs = window.getComputedStyle(selected);
+      const color = selectedCs.backgroundColor;
+      // eslint-disable-next-line no-param-reassign
+      sourceEvent.target.style.backgroundColor = color;
+    }
+
+    for (let i = 0; i < pixelList.length; i += 1) {
+      pixelList[i].style.backgroundColor = 'white';
+      pixelList[i].addEventListener('click', paint);
+    }
+  }
+
+  painting();
+
+  function clearBoard() {
+    const pixelList = document.getElementsByClassName('pixel');
+    for (let i = 0; i < pixelList.length; i += 1) {
+      pixelList[i].style.backgroundColor = 'white';
+    }
+  }
+
+  const clearButton = document.getElementById('clear-board');
+  clearButton.addEventListener('click', clearBoard);
 };
