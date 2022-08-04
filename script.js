@@ -129,7 +129,7 @@ window.onload = function pgCarregada() {
       viewSize();
       painting();
     }
-    if (boardSize == undefined) {
+    if (boardSize === undefined) {
       alert('Board inválido!');
     }
     removeChild(board);
